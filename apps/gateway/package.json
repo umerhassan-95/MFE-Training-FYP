@@ -1,0 +1,9 @@
+{
+  "name": "@meridian/gateway",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve --config webpack.config.js",
+    "build": "webpack --config webpack.config.js --mode production"
+  }
+}

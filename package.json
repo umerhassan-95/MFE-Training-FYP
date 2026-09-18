@@ -1,0 +1,57 @@
+{
+  "name": "meridian-market",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Meridian Market — production-oriented micro frontend platform (Nx-equivalent npm workspaces).",
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "dev": "concurrently -k -n api,products,cart,orders,gateway -c cyan,green,magenta,yellow,blue \"npm run dev:api\" \"npm run dev:products\" \"npm run dev:cart\" \"npm run dev:orders\" \"npm run dev:gateway\"",
+    "dev:api": "npm --workspace @meridian/api run dev",
+    "dev:products": "npm --workspace @meridian/mfe-products run dev",
+    "dev:cart": "npm --workspace @meridian/mfe-cart run dev",
+    "dev:orders": "npm --workspace @meridian/mfe-orders run dev",
+    "dev:gateway": "wait-on http://localhost:3000/api/health http://localhost:4201/remoteEntry.js http://localhost:4202/remoteEntry.js http://localhost:4203/remoteEntry.js && npm --workspace @meridian/gateway run dev",
+    "build": "npm run build --workspaces --if-present",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint \"apps/**/*.{ts,tsx}\" \"libs/**/*.{ts,tsx}\" --max-warnings=0",
+    "typecheck": "tsc -p tsconfig.base.json --noEmit --pretty false",
+    "preview": "npm run build && npm run dev"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.26.2",
+    "zustand": "^4.5.5"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.12.0",
+    "@testing-library/jest-dom": "^6.5.0",
+    "@testing-library/react": "^16.0.1",
+    "@types/react": "^18.3.11",
+    "@types/react-dom": "^18.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.8.1",
+    "@typescript-eslint/parser": "^8.8.1",
+    "concurrently": "^9.0.1",
+    "css-loader": "^7.1.2",
+    "dotenv": "^16.4.5",
+    "eslint": "^9.12.0",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "html-webpack-plugin": "^5.6.0",
+    "jsdom": "^25.0.1",
+    "style-loader": "^4.0.0",
+    "ts-loader": "^9.5.1",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.2",
+    "wait-on": "^8.0.1",
+    "webpack": "^5.95.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^5.1.0"
+  }
+}
