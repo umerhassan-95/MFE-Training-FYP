@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "moduleResolution": "bundler",
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "baseUrl": ".",
+    "paths": {
+      "@meridian/shared-types": ["libs/shared-types/src/index.ts"],
+      "@meridian/shared-ui": ["libs/shared-ui/src/index.ts"],
+      "@meridian/state": ["libs/state/src/index.ts"],
+      "@meridian/events": ["libs/events/src/index.ts"],
+      "@meridian/utilities": ["libs/utilities/src/index.ts"]
+    }
+  },
+  "include": ["apps", "libs", "types", "vitest.config.ts", "vitest.setup.ts"],
+  "exclude": ["apps/api", "**/dist", "**/node_modules"]
+}
